@@ -9,6 +9,9 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^2.6.2
     version: registry.npmmirror.com/@antfu/eslint-config@2.6.2(@vue/compiler-sfc@3.3.11)(eslint@8.56.0)(typescript@5.2.2)
+  '@types/node':
+    specifier: ^20.11.0
+    version: registry.npmmirror.com/@types/node@20.11.0
   '@vitejs/plugin-vue':
     specifier: ^4.5.2
     version: registry.npmmirror.com/@vitejs/plugin-vue@4.5.2(vite@5.0.8)(vue@3.3.11)
@@ -20,7 +23,7 @@ devDependencies:
     version: registry.npmmirror.com/typescript@5.2.2
   vite:
     specifier: ^5.0.8
-    version: registry.npmmirror.com/vite@5.0.8
+    version: registry.npmmirror.com/vite@5.0.8(@types/node@20.11.0)
   vue-tsc:
     specifier: ^1.8.25
     version: registry.npmmirror.com/vue-tsc@1.8.25(typescript@5.2.2)
@@ -802,6 +805,14 @@ packages:
       '@types/unist': registry.npmmirror.com/@types/unist@2.0.10
     dev: true
 
+  registry.npmmirror.com/@types/node@20.11.0:
+    resolution: {integrity: sha512-o9bjXmDNcF7GbM4CNQpmi+TutCgap/K3w1JyKgxAjqx41zp9qlIAVFi0IhCNsJcXolEqLWhbFbEeL0PvYm4pcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.11.0.tgz}
+    name: '@types/node'
+    version: 20.11.0
+    dependencies:
+      undici-types: registry.npmmirror.com/undici-types@5.26.5
+    dev: true
+
   registry.npmmirror.com/@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/normalize-package-data/-/normalize-package-data-2.4.4.tgz}
     name: '@types/normalize-package-data'
@@ -989,7 +1000,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: registry.npmmirror.com/vite@5.0.8
+      vite: registry.npmmirror.com/vite@5.0.8(@types/node@20.11.0)
       vue: registry.npmmirror.com/vue@3.3.11(typescript@5.2.2)
     dev: true
 
@@ -3476,6 +3487,12 @@ packages:
     version: 1.3.2
     dev: true
 
+  registry.npmmirror.com/undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/undici-types/-/undici-types-5.26.5.tgz}
+    name: undici-types
+    version: 5.26.5
+    dev: true
+
   registry.npmmirror.com/unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unist-util-stringify-position/-/unist-util-stringify-position-2.0.3.tgz}
     name: unist-util-stringify-position
@@ -3521,8 +3538,9 @@ packages:
       spdx-expression-parse: registry.npmmirror.com/spdx-expression-parse@3.0.1
     dev: true
 
-  registry.npmmirror.com/vite@5.0.8:
+  registry.npmmirror.com/vite@5.0.8(@types/node@20.11.0):
     resolution: {integrity: sha512-jYMALd8aeqR3yS9xlHd0OzQJndS9fH5ylVgWdB+pxTwxLKdO1pgC5Dlb398BUxpfaBxa4M9oT7j1g503Gaj5IQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-5.0.8.tgz}
+    id: registry.npmmirror.com/vite/5.0.8
     name: vite
     version: 5.0.8
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -3551,6 +3569,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': registry.npmmirror.com/@types/node@20.11.0
       esbuild: registry.npmmirror.com/esbuild@0.19.11
       postcss: registry.npmmirror.com/postcss@8.4.33
       rollup: registry.npmmirror.com/rollup@4.9.5
