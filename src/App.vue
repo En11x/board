@@ -3,6 +3,6 @@
 
 <template>
   <div>
-   vite
+    vite
   </div>
 </template>
