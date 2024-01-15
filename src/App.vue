@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import Board from '@/pages/board/index.vue'
+import Board from '@/components/board/index.vue'
+import Menu from '@/components/menu/index.vue'
+import Tool from '@/components/tool/index.vue'
+import Operator from '@/components/operator/index.vue'
 </script>
 
 <template>
-  <Board />
+  <div relative h-screen w-screen overflow-hidden bg-base>
+    <Board />
+    <Menu />
+    <Operator />
+    <Tool />
+  </div>
 </template>
