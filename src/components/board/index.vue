@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div h-full w-full flex-c>
+  <div wh-full f-c-c>
     board
   </div>
 </template>

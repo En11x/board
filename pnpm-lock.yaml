@@ -9,6 +9,9 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^2.6.2
     version: registry.npmmirror.com/@antfu/eslint-config@2.6.2(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint@8.56.0)(typescript@5.2.2)
+  '@iconify-json/carbon':
+    specifier: ^1.1.27
+    version: registry.npmmirror.com/@iconify-json/carbon@1.1.27
   '@types/node':
     specifier: ^20.11.0
     version: registry.npmmirror.com/@types/node@20.11.0
@@ -919,6 +922,14 @@ packages:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz}
     name: '@humanwhocodes/object-schema'
     version: 2.0.2
+    dev: true
+
+  registry.npmmirror.com/@iconify-json/carbon@1.1.27:
+    resolution: {integrity: sha512-tJVXv9+D9cjU5HcaY+8J0awv9AL/Mjo9MWR/fxHfHFPP/iokjPBEgq4jOBDGNe8W0k/BTrVI3zpgZjLoi6RNGg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify-json/carbon/-/carbon-1.1.27.tgz}
+    name: '@iconify-json/carbon'
+    version: 1.1.27
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types@2.0.0
     dev: true
 
   registry.npmmirror.com/@iconify/types@2.0.0:
