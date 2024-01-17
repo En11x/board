@@ -3,11 +3,13 @@ import { defineConfig, presetAttributify, presetIcons, presetUno, presetWebFonts
 export default defineConfig({
   shortcuts: {
     'wh-full': 'w-full h-full',
+    'f-j-b': 'flex items-center justify-between',
     'f-c-c': 'flex items-center justify-center',
     'panel': 'bg-[#fdfdfd] border-rd-[9px]',
     'popover': 'f-c-c absolute ma-[0px] panel shadow-1 font-mono',
     'i-sm': 'w-[20px] h-[20px] inline-block',
     'btn-sm': 'relative f-c-c ma-[4px] pa-[4px] h-[32px] min-w-[32px] border-rd-[6px] bg-transparent cursor-pointer font-size-[12px] color-text hover:bg-hover',
+    'btn-lg': 'btn-sm w-[7rem]',
     'switch-animation': 'transition duration-300',
     'bg-1': 'bg-base dark:bg-base-dark switch-animation',
     'bg-2': 'bg-panel',
