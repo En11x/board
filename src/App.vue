@@ -6,7 +6,7 @@ import Operator from '@/components/operator/index.vue'
 </script>
 
 <template>
-  <div relative h-screen w-screen overflow-hidden bg-1>
+  <div relative h-screen w-screen overflow-hidden font-mono bg-1>
     <Board />
     <Menu />
     <Operator />
