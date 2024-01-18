@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "vue": "^3.3.11"
   },
   "devDependencies": {

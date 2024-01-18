@@ -1,107 +1,52 @@
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
+import { useClickAway, useEventListener, usePopover } from '@/composables/index'
+import type { PopoverProps } from '@/composables/usePopover'
 
-type IPlacement = 'bottom-start' | 'top-start' | 'left-start' | 'right-start'
-
-interface IPopover {
+interface IPopover extends PopoverProps {
   trigger?: 'click' | 'hover'
-  placement?: IPlacement
 }
 const props = withDefaults(defineProps<IPopover>(), {
   trigger: 'click',
   placement: 'bottom-start',
 })
-const popoverEl = ref<HTMLElement>()
-const contentEl = ref<HTMLElement>()
-const triggerEl = ref<HTMLElement>()
-const show = ref<boolean>(false)
+const containerEl = ref()
+const popoverEl = ref()
+const triggerEl = ref()
 
-function positionContent() {
-  document.body.appendChild(contentEl.value!)
-  const { width, height, top, left } = triggerEl.value?.getBoundingClientRect() as DOMRect
-  const position: Record<IPlacement, { top: number, left: number }> = {
-    'bottom-start': {
-      top: top + height + window.scrollY,
-      left: left + window.scrollX,
-    },
-    'top-start': {
-      top: top - height - window.scrollY,
-      left: left + window.scrollX,
-    },
-    'left-start': {
-      top: top + window.scrollY,
-      left: left - width - window.scrollX,
-    },
-    'right-start': {
-      top: top + window.scrollY,
-      left: left + width + window.scrollX,
-    },
-  }
-  contentEl.value!.style.top = `${position[props.placement].top + 8}px`
-  contentEl.value!.style.left = `${position[props.placement].left}px`
+const { isOpen, open, close } = usePopover({
+  popover: popoverEl,
+  trigger: triggerEl,
+  placement: props.placement,
+  offset: props.offset,
+})
+
+function togglePopover() {
+  isOpen.value ? close() : open()
 }
 
-function clickDocument(e: MouseEvent) {
-  if (contentEl.value && contentEl.value.contains(e.target as any))
-    return
-
-  close()
+useClickAway(containerEl, close)
+if (props.trigger === 'click') {
+  useEventListener(triggerEl, 'click', togglePopover)
 }
-
-async function open() {
-  show.value = true
-  await nextTick()
-  positionContent()
-  setTimeout(() => {
-    document.addEventListener('click', clickDocument)
-  }, 10)
-}
-
-async function close() {
-  show.value = false
-  setTimeout(() => {
-    document.removeEventListener('click', clickDocument)
-  }, 10)
-}
-
-function onClick(e: MouseEvent) {
-  if (triggerEl.value?.contains(e.target as any)) {
-    if (show.value === false)
+else {
+  useEventListener(containerEl, 'mouseover', (e: MouseEvent) => {
+    if (e.composedPath().includes(triggerEl.value) || e.composedPath().includes(popoverEl.value))
       open()
 
     else
       close()
-  }
+  })
 }
-
-onMounted(() => {
-  if (props.trigger === 'click') {
-    popoverEl.value?.addEventListener('click', onClick)
-  }
-  else {
-    popoverEl.value?.addEventListener('mouseenter', onClick)
-    popoverEl.value?.addEventListener('mouseleave', onClick)
-  }
-})
-
-onUnmounted(() => {
-  if (props.trigger === 'click') {
-    popoverEl.value?.removeEventListener('click', onClick)
-  }
-  else {
-    popoverEl.value?.removeEventListener('mouseenter', onClick)
-    popoverEl.value?.removeEventListener('mouseleave', onClick)
-  }
-})
 </script>
 
 <template>
-  <div ref="popoverEl">
-    <div v-if="show" ref="contentEl" popover>
+  <div ref="containerEl" inline-block>
+    <div ref="triggerEl">
+      <slot />
+    </div>
+    <div v-if="isOpen" ref="popoverEl" popover>
       <slot name="content" />
     </div>
-    <span ref="triggerEl">
-      <slot />
-    </span>
   </div>
 </template>

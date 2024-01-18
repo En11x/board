@@ -7,7 +7,7 @@ import Popover from '@/components/popover/index.vue'
     <template #content>
       content
     </template>
-    <button f-j-b btn-lg>
+    <button f-j-b btn-md>
       Page1 <i i-carbon-chevron-down i-sm />
     </button>
   </Popover>
