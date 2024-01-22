@@ -1,16 +1,17 @@
 import { defineStore } from 'pinia'
+import type { Ref } from 'vue'
 import { useDark } from '@/composables/index'
 
-interface BoardState {
-  darkMode: boolean
+interface MenuState {
+  darkMode: Ref<boolean>
 }
 
 const isDark = useDark()
 
-export const useBoardStore = defineStore({
-  id: 'board',
-  state: (): BoardState => ({
-    darkMode: isDark.value,
+export const useMenuStore = defineStore({
+  id: 'menu',
+  state: (): MenuState => ({
+    darkMode: isDark,
   }),
   getters: {
     getDarkMode(): boolean {
@@ -19,7 +20,7 @@ export const useBoardStore = defineStore({
   },
   actions: {
     toggleDarkMode() {
-      this.darkMode = !this.darkMode
+      isDark.value = !isDark.value
     },
   },
 })

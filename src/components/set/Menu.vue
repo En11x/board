@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 import Popover from '@/components/popover/index.vue'
-import { useBoardStore } from '@/store/modules/board'
+import { useMenuStore } from '@/store/modules/menu'
 
-const { darkMode, toggleDarkMode } = toRefs(useBoardStore())
+const { darkMode, toggleDarkMode } = toRefs(useMenuStore())
 </script>
 
 <template>

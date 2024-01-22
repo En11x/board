@@ -8,8 +8,9 @@ export function useDark() {
     get() {
       return system.value
     },
-    set(v) {
+    set(v: boolean) {
       system.value = v
+      document.documentElement.setAttribute('class', v ? 'dark' : 'light')
     },
   })
 
