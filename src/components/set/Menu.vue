@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { toRefs } from 'vue'
 import Popover from '@/components/popover/index.vue'
+import { useBoardStore } from '@/store/modules/board'
+
+const { darkMode, toggleDarkMode } = toRefs(useBoardStore())
 </script>
 
 <template>
@@ -7,8 +11,11 @@ import Popover from '@/components/popover/index.vue'
     <template #content>
       <Popover trigger="hover" placement="right-start" :offset="{ x: -5, y: 5 }">
         <template #content>
-          <button btn-lg>
-            Dark mode
+          <button f-c-c btn-lg @click="toggleDarkMode">
+            <div i-sm>
+              <i v-if="darkMode" i-carbon-checkmark />
+            </div>
+            <span flex-grow-2>Dark mode</span>
           </button>
         </template>
         <button f-j-b btn-lg>
