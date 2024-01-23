@@ -15,10 +15,12 @@ export default defineConfig({
     'popover':
       'f-c-c absolute ma-[0px] panel shadow-1 dark:shadow-1-dark font-mono overflow-inherit',
     'i-sm': 'w-[16px] h-[16px] inline-block',
+    'i-md': 'w-[18px] h-[18px] inline-block',
     'btn-sm':
       'relative f-c-c ma-[4px] pa-[4px] h-[32px] min-w-[32px] border-rd-[6px] bg-transparent cursor-pointer font-size-[12px] color-text dark:color-text-dark hover:bg-hover dark:hover:bg-hover-dark',
     'btn-md': 'btn-sm w-[7rem]',
     'btn-lg': 'btn-sm w-[10rem]',
+    'btn-square': 'btn-sm w-[36px] h-[36px]',
     'switch-animation': 'transition duration-300',
     'bg-1': 'bg-base dark:bg-base-dark switch-animation',
     'bg-2': 'bg-panel dark:bg-panel-dark',
@@ -51,6 +53,7 @@ export default defineConfig({
       baseDark: 'hsl(240, 5%, 8%)',
       panel: 'hsl(204, 16%, 94%)',
       panelDark: 'hsl(220, 8%, 15%)',
+      active: '#4387F4',
     },
   },
   rules: [
