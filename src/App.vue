@@ -2,7 +2,7 @@
 import Board from '@/components/board/index.vue'
 import Setting from '@/components/set/index.vue'
 import Tool from '@/components/tool/index.vue'
-import Operator from '@/components/operator/index.vue'
+import Draw from '@/components/draw/index.vue'
 </script>
 
 <template>
@@ -17,7 +17,7 @@ import Operator from '@/components/operator/index.vue'
   >
     <Board />
     <Setting />
-    <Operator />
+    <Draw />
     <Tool />
   </div>
 </template>

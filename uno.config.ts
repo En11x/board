@@ -24,6 +24,7 @@ export default defineConfig({
     'switch-animation': 'transition duration-300',
     'bg-1': 'bg-base dark:bg-base-dark switch-animation',
     'bg-2': 'bg-panel dark:bg-panel-dark',
+    'circle': 'relative w-[16px] h-[16px] rounded-full',
   },
   presets: [
     presetUno(),
@@ -48,7 +49,7 @@ export default defineConfig({
       text: '#2d2d2d',
       textDark: '#ffffff',
       hover: 'rgba(0, 0, 0, .042)',
-      hoverDark: 'hsl(220, 8%, 20%)',
+      hoverDark: 'hsl(220, 8%, 30%)',
       base: 'rgb(249, 250, 251)',
       baseDark: 'hsl(240, 5%, 8%)',
       panel: 'hsl(204, 16%, 94%)',
@@ -70,6 +71,13 @@ export default defineConfig({
         'box-shadow':
           '0px 1px 2px rgba(0, 0, 0, .28), 0px 2px 6px rgba(0, 0, 0, .14), inset 0px 0px 0px 1px hsl(240, 13%, 22%)',
       },
+    ],
+    [
+      /^grid-cols-(.+)$/,
+      ([, num]) => ({
+        'display': 'grid',
+        'grid-template-columns': `repeat(${num},1fr)`,
+      }),
     ],
   ],
 })

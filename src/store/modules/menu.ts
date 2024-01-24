@@ -13,11 +13,6 @@ export const useMenuStore = defineStore({
   state: (): MenuState => ({
     darkMode: isDark,
   }),
-  getters: {
-    getDarkMode(): boolean {
-      return this.darkMode
-    },
-  },
   actions: {
     toggleDarkMode() {
       isDark.value = !isDark.value

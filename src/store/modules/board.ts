@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia'
-import { BoardMode } from '@/constants'
+import { BOARD_MODE } from '@/constants'
 import { board } from '@/utils/board'
 
 interface BoardState {
-  mode: BoardMode
+  mode: BOARD_MODE
 }
 
 export const useBoardStore = defineStore({
   id: 'board',
   state: (): BoardState => ({
-    mode: BoardMode.SELECT,
+    mode: BOARD_MODE.SELECT,
   }),
   getters: {},
   actions: {
-    toggleMode(mode: BoardMode) {
+    toggleMode(mode: BOARD_MODE) {
       this.mode = mode
-      board.initMode()
+      board.setMode()
     },
   },
 })

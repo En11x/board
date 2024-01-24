@@ -1,6 +1,7 @@
 import { fabric } from 'fabric'
-import { BoardMode } from '@/constants'
+import { BOARD_MODE } from '@/constants'
 import { useBoardStore } from '@/store/modules/board'
+import { useDrawStore } from '@/store/modules/draw'
 
 class Board {
   canvas: fabric.Canvas | null = null
@@ -13,26 +14,44 @@ class Board {
       height: window.innerHeight,
     })
 
-    this.initMode()
+    this.setMode()
   }
 
-  initMode() {
+  setMode() {
     if (!this.canvas)
       return
+    let selectable = false
     const mode = useBoardStore().mode
-    let isDrawingMode = false
-    const objectSet: Partial<fabric.IObjectOptions> = {
-      selectable: false,
+    if (mode === BOARD_MODE.SELECT) {
+      this.canvas.isDrawingMode = false
+      selectable = true
     }
-    if (mode === BoardMode.SELECT)
-      objectSet.selectable = true
 
-    if (mode === BoardMode.DRAW) {
-      isDrawingMode = true
-      objectSet.selectable = false
+    if (mode === BOARD_MODE.DRAW) {
+      selectable = false
+      this.setPencilBrush()
     }
-    this.canvas.isDrawingMode = isDrawingMode
-    fabric.Object.prototype.set(objectSet)
+
+    fabric.Object.prototype.set({
+      selectable,
+    })
+  }
+
+  setPencilBrush() {
+    if (!this.canvas)
+      return
+
+    const pencilBrush = new fabric.PencilBrush(this.canvas)
+    this.canvas.isDrawingMode = true
+    this.canvas.freeDrawingBrush = pencilBrush
+    this.setPencilColor()
+  }
+
+  setPencilColor(color: string = useDrawStore().color) {
+    if (!this.canvas)
+      return
+
+    this.canvas.freeDrawingBrush.color = color
   }
 }
 
