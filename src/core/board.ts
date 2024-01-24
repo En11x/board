@@ -1,4 +1,6 @@
 import { fabric } from 'fabric'
+import 'fabric/src/mixins/eraser_brush.mixin'
+
 import { BOARD_MODE } from '@/constants'
 import { useBoardStore } from '@/store/modules/board'
 import { useDrawStore } from '@/store/modules/draw'
@@ -29,7 +31,11 @@ class Board {
 
     if (mode === BOARD_MODE.DRAW) {
       selectable = false
-      this.setPencilBrush()
+      this.initPencil()
+    }
+
+    if(mode === BOARD_MODE.ERASER){
+      this.initEraser()
     }
 
     fabric.Object.prototype.set({
@@ -37,21 +43,39 @@ class Board {
     })
   }
 
-  setPencilBrush() {
+  initPencil() {
     if (!this.canvas)
       return
 
     const pencilBrush = new fabric.PencilBrush(this.canvas)
     this.canvas.isDrawingMode = true
     this.canvas.freeDrawingBrush = pencilBrush
-    this.setPencilColor()
+    this.canvas.freeDrawingBrush.width = useDrawStore().drawWidth
+    this.setPencil()
   }
 
-  setPencilColor(color: string = useDrawStore().color) {
+  setPencil() {
     if (!this.canvas)
       return
 
-    this.canvas.freeDrawingBrush.color = color
+    const draw = useDrawStore()
+    this.canvas.freeDrawingBrush.color = draw.color
+    this.canvas.freeDrawingBrush.width = draw.drawWidth
+  }
+
+  initEraser(){
+    if(!this.canvas){
+      return
+    }
+
+    const eraserBrush = new (fabric as any).EraserBrush(this.canvas)
+    this.canvas.isDrawingMode = true
+    this.canvas.freeDrawingBrush = eraserBrush
+    this.setEraser()
+  }
+
+  setEraser(){
+    this.canvas!.freeDrawingBrush.width = useDrawStore().drawWidth
   }
 }
 

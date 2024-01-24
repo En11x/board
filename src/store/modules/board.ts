@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { BOARD_MODE } from '@/constants'
-import { board } from '@/utils/board'
+import { board } from '@/core/board'
 
 interface BoardState {
   mode: BOARD_MODE

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, toRefs } from 'vue'
-import { board } from '@/utils/board'
+import { board } from '@/core/board'
 import { useBoardStore } from '@/store/modules/board'
 
 const canvasRef = ref<HTMLCanvasElement>()
