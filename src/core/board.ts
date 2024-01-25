@@ -1,12 +1,14 @@
 import { fabric } from 'fabric'
 import 'fabric/src/mixins/eraser_brush.mixin'
 
+import { CanvasEvent } from './event'
 import { BOARD_MODE } from '@/constants'
 import { useBoardStore } from '@/store/modules/board'
 import { useDrawStore } from '@/store/modules/draw'
 
 class Board {
   canvas: fabric.Canvas | null = null
+  event: CanvasEvent | null = null
 
   constructor() {}
 
@@ -17,6 +19,8 @@ class Board {
     })
 
     this.setMode()
+
+    this.event = new CanvasEvent(this.canvas)
   }
 
   setMode() {
@@ -29,14 +33,18 @@ class Board {
       selectable = true
     }
 
+    if (mode === BOARD_MODE.HAND) {
+      this.canvas.isDrawingMode = false
+      selectable = true
+    }
+
     if (mode === BOARD_MODE.DRAW) {
       selectable = false
       this.initPencil()
     }
 
-    if(mode === BOARD_MODE.ERASER){
+    if (mode === BOARD_MODE.ERASER)
       this.initEraser()
-    }
 
     fabric.Object.prototype.set({
       selectable,
@@ -63,10 +71,9 @@ class Board {
     this.canvas.freeDrawingBrush.width = draw.drawWidth
   }
 
-  initEraser(){
-    if(!this.canvas){
+  initEraser() {
+    if (!this.canvas)
       return
-    }
 
     const eraserBrush = new (fabric as any).EraserBrush(this.canvas)
     this.canvas.isDrawingMode = true
@@ -74,7 +81,7 @@ class Board {
     this.setEraser()
   }
 
-  setEraser(){
+  setEraser() {
     this.canvas!.freeDrawingBrush.width = useDrawStore().drawWidth
   }
 }

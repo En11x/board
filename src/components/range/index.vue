@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref,watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useEventListener } from '@/composables'
 import { debounce } from '@/utils/index'
 
@@ -19,7 +19,7 @@ const rangeElLeft = ref<number>(0)
 const positionX = ref<number>(0)
 const isMouseDown = ref<boolean>(false)
 
-const slideClick = (e: MouseEvent) => {
+function slideClick(e: MouseEvent) {
   positionX.value = e.x - rangeElLeft.value
 }
 const updated = debounce(() => emit('updated', range.value))
@@ -33,10 +33,13 @@ useEventListener(document, 'mouseup', () => {
 useEventListener(leftEl, 'click', slideClick)
 useEventListener(rightEl, 'click', slideClick)
 useEventListener(document, 'mousemove', (e: MouseEvent) => {
-  if (!isMouseDown.value) return
+  if (!isMouseDown.value)
+    return
   let diff = e.x - rangeElLeft.value
-  if (diff < 0) diff = 0
-  if (diff > rangeElWidth.value) diff = rangeElWidth.value
+  if (diff < 0)
+    diff = 0
+  if (diff > rangeElWidth.value)
+    diff = rangeElWidth.value
   positionX.value = diff
 })
 
@@ -57,10 +60,8 @@ watch(positionX, (newPositionX) => {
     <span
       ref="leftEl"
       :style="{ width: `${range}%` }"
-      h-1
-      b-rd
-      bg-active
-      cursor-pointer
+
+      h-1 cursor-pointer b-rd bg-active
     />
     <span
       ref="sliderEl"
@@ -74,11 +75,8 @@ watch(positionX, (newPositionX) => {
     />
     <span
       ref="rightEl"
-      h-1
-      b-rd
-      bg-2
-      dark:bg-hover-dark
-      cursor-pointer
+
+      h-1 cursor-pointer b-rd bg-2 dark:bg-hover-dark
       :style="{ width: `${100 - range}%` }"
     />
   </div>
